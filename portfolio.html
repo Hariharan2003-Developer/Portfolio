@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hariharan | Frontend Developer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --accent: #6C63FF;
+      --accent2: #FF6584;
+      --bg: #f8f8fb;
+      --card-bg: #ffffff;
+      --text-primary: #1a1a2e;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #ffffffee;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .logo { font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #FF6584);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px; margin: 0 auto 2rem;
+      color: #fff; font-weight: 600;
+      box-shadow: 0 8px 32px rgba(108,99,255,0.25);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #ede9ff; color: #5b52cc;
+      font-size: 12px; padding: 5px 16px;
+      border-radius: 20px; margin-bottom: 1.2rem;
+      font-weight: 600; letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: 44px; font-weight: 700;
+      line-height: 1.15; margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 17px; color: var(--text-secondary);
+      max-width: 500px; margin: 0 auto 2.2rem; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #fff; border: none;
+      padding: 13px 30px; border-radius: 10px; font-size: 15px;
+      cursor: pointer; font-weight: 600; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text-primary);
+      border: 1.5px solid var(--border);
+      padding: 13px 30px; border-radius: 10px; font-size: 15px;
+      cursor: pointer; font-weight: 600; text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-title { font-size: 30px; font-weight: 700; margin-bottom: 0.4rem; }
+    .section-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 2.5rem; }
+    .divider {
+      width: 48px; height: 4px; border-radius: 4px;
+      background: var(--accent); margin: 0.5rem 0 2rem;
+    }
+
+    /* ABOUT */
+    .about-text {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.85; max-width: 640px;
+    }
+
+    /* SKILLS */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-pill {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 20px; padding: 7px 18px; font-size: 13px;
+      color: var(--text-secondary); font-weight: 600;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      cursor: pointer; text-decoration: none;
+      display: block; color: inherit;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(108,99,255,0.12);
+      border-color: var(--accent);
+    }
+    .card-thumb {
+      height: 140px; display: flex; align-items: center;
+      justify-content: center; font-size: 52px;
+    }
+    .card-body { padding: 1rem 1.25rem 1.3rem; }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+    .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 12px; font-weight: 600;
+    }
+    .card-link-hint {
+      font-size: 12px; color: var(--accent);
+      margin-top: 10px; display: flex; align-items: center; gap: 4px;
+    }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.5rem;
+      text-align: center;
+    }
+    .contact-card p {
+      color: var(--text-secondary); margin-bottom: 1.8rem;
+      line-height: 1.8; max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: 8px;
+      background: #f9f9ff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 20px; font-size: 13px;
+      color: var(--text-primary); text-decoration: none; font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); background: #ede9ff; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--text-secondary);
+    }
+
+    /* SCROLL ANIMATION */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">Hariharan</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero fade-in">
+    <div class="avatar">H</div>
+    <span class="hero-badge">Frontend Developer</span>
+    <h1>Hi, I'm <span>Hariharan</span></h1>
+    <p>I build clean, responsive web experiences using HTML, CSS, and JavaScript. Passionate about creating things that live on the internet.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#projects">View Projects</a>
+      <a class="btn-outline" href="#contact">Contact Me</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-in">
+    <p class="section-title">About me</p>
+    <div class="divider"></div>
+    <p class="about-text">
+      I'm Hariharan, a frontend developer who loves turning ideas into real, working projects. From simple tools to interactive apps, I enjoy the full process of building for the web. I've built 5 projects that showcase my skills in HTML, CSS, and JavaScript — each deployed live on Vercel.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-in">
+    <p class="section-title">Skills</p>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <span class="skill-pill">HTML5</span>
+      <span class="skill-pill">CSS3</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">Responsive Design</span>
+      <span class="skill-pill">DOM Manipulation</span>
+      <span class="skill-pill">LocalStorage</span>
+      <span class="skill-pill">API Integration</span>
+      <span class="skill-pill">Git & GitHub</span>
+      <span class="skill-pill">Vercel</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-in">
+    <p class="section-title">Projects</p>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <a class="project-card" href="https://my-calculator-chi-two.vercel.app/" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:#ede9ff;">🧮</div>
+        <div class="card-body">
+          <p class="card-title">Calculator</p>
+          <p class="card-desc">A clean, functional calculator with arithmetic operations and a smooth UI.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:#ede9ff;color:#5b52cc;">HTML</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">CSS</span>
+            <span class="tag" style="background:#fef9c3;color:#854d0e;">JavaScript</span>
+          </div>
+          <p class="card-link-hint">↗ View Live Project</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://my-to-do-list-sable.vercel.app/" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:#dcfce7;">✅</div>
+        <div class="card-body">
+          <p class="card-title">To-Do List</p>
+          <p class="card-desc">A task manager app to add, complete, and delete tasks — keeping you organized.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:#ede9ff;color:#5b52cc;">HTML</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">CSS</span>
+            <span class="tag" style="background:#fef9c3;color:#854d0e;">JavaScript</span>
+          </div>
+          <p class="card-link-hint">↗ View Live Project</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://product-cart-ten-lake.vercel.app/" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:#fff7ed;">🛒</div>
+        <div class="card-body">
+          <p class="card-title">Product Cart</p>
+          <p class="card-desc">A shopping cart UI with product listings, add-to-cart, and total price calculation.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:#ede9ff;color:#5b52cc;">HTML</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">CSS</span>
+            <span class="tag" style="background:#fef9c3;color:#854d0e;">JavaScript</span>
+          </div>
+          <p class="card-link-hint">↗ View Live Project</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://image-slider-xi-mocha.vercel.app/" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:#fce7f3;">🖼️</div>
+        <div class="card-body">
+          <p class="card-title">Image Slider</p>
+          <p class="card-desc">An interactive image carousel with previous/next navigation and smooth transitions.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:#ede9ff;color:#5b52cc;">HTML</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">CSS</span>
+            <span class="tag" style="background:#fef9c3;color:#854d0e;">JavaScript</span>
+          </div>
+          <p class="card-link-hint">↗ View Live Project</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://qr-code-generator-six-sepia.vercel.app/" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:#f0fdf4;">📱</div>
+        <div class="card-body">
+          <p class="card-title">QR Code Generator</p>
+          <p class="card-desc">Generate QR codes for any text or URL instantly, right in the browser.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:#ede9ff;color:#5b52cc;">HTML</span>
+            <span class="tag" style="background:#e0f2fe;color:#0369a1;">CSS</span>
+            <span class="tag" style="background:#fef9c3;color:#854d0e;">JavaScript</span>
+          </div>
+          <p class="card-link-hint">↗ View Live Project</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-in">
+    <p class="section-title">Contact</p>
+    <div class="divider"></div>
+    <div class="contact-card">
+      <p>I'm open to freelance projects, collaborations, or just a friendly chat about web development. Feel free to reach out!</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:hariharanit302@gmail.com">✉️ hariharanit302@gmail.com</a>
+        <a class="contact-link" href="https://github.com/Hariharan2003-Developer" target="_blank" rel="noopener">⬡ GitHub</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/hariharan0109" target="_blank" rel="noopener">in LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed &amp; built by <strong>Hariharan</strong> &middot; 2025</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
